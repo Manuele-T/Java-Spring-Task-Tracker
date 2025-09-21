@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Task Manager</h1>
+
+        <form action="/tasks/new" method="post">
+            <input type="text" name="title" placeholder="Task title" required>
+            <textarea name="description" placeholder="Task description"></textarea>
+            <button type="submit">Create Task</button>
+        </form>
+
+        <div th:each="task : ${tasks}">
+            <article>
+                <header th:text="${task.title}"></header>
+                <p th:text="${task.description}"></p>
+                <footer>
+                    <form th:action="@{/tasks/complete/{id}(id=${task.id})}" method="post" style="display: inline-block;">
+                        <button type="submit" th:classappend="${task.completed} ? 'secondary' : 'primary'" th:text="${task.completed} ? 'Mark as Incomplete' : 'Mark as Complete'"></button>
+                    </form>
+                    <form th:action="@{/tasks/delete/{id}(id=${task.id})}" method="post" style="display: inline-block;">
+                        <button type="submit" class="secondary">Delete</button>
+                    </form>
+                </footer>
+            </article>
+        </div>
+    </main>
+</body>
+</html>
