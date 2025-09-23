@@ -57,8 +57,8 @@ Follow these instructions to get a local copy of the project up and running.
 
 ### Clone this repository
 ```bash
-git clone <your-repository-url>
-cd taskmanager
+git clone https://github.com/Manuele-T/Java-Spring-Task-Tracker
+cd Java-Spring-Task-Tracker
 ````
 
 ### Start the PostgreSQL Database with Docker
